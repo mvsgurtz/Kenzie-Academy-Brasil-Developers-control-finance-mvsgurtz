@@ -1,26 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control Finance</title>
-    <link
-      rel="shortcut icon"
-      href="./src/assets/favicon.ico"
-      type="image/x-icon"
-    />
-    <meta
-      name="description"
-      content="Control Finance - Seu controle financeiro"
-    />
-    <link rel="stylesheet" href="./src/styles/globalStyles.css" />
-    <link rel="stylesheet" href="./src/styles/index.css" />
-  </head>
-  <body>
-    <main id="app"></main>
-    <script src="./src/scripts/modal.js"></script>
-    <script src="./src/scripts/valuesData.js"></script>
-    <script src="./src/scripts/index.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <script src="./src/scripts/modal.js"></script> -->
+  <script src="./src/scripts/valuesDatabase.js"></script>
+  <script src="./src/scripts/index.js" type="module" defer></script>
+  <title>Control Finance</title>
+  <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="Control Finance - Seu controle financeiro" />
+  <link rel="stylesheet" href="./src/styles/globalStyles.css" />
+  <link rel="stylesheet" href="./src/styles/index.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header__container">
+      <div class="header__intro">
+        <p><span>Control</span> Finance</p>
+        <button id="showModal">Registrar novo valor</button>
+      </div>
+    </div>
+  </header>
+  <main id="app">
+    <div class="container__nav">
+      <p>Resumo financeiro</p>
+      <div class="nav__buttons">
+        <button>Todos</button>
+        <button>Entradas</button>
+        <button>Saídas</button>
+      </div>
+    </div>
+    <div class="container__sum">
+      <p>Soma dos valores</p>
+      <p>R$2120,00</p>
+    </div>
+    <div class="container__transactions">
+      <ul>
+        <li>
+          <p>R$ 40,00</p>
+          <div class="transactions__info">
+            <span>Entrada</span>
+            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-trash3" viewBox="0 0 16 16">
+                <path
+                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+              </svg></button>
+          </div>
+        </li>
+        <li>
+          <p>R$ 20,00</p>
+          <div class="transactions__info">
+            <span>Saída</span>
+            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-trash3" viewBox="0 0 16 16">
+                <path
+                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+              </svg></button>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    <dialog id="modalContainer">
+      <div class="modal">
+        <div class="dialog__info">
+          <p>Registro do valor</p>
+          <button class="closeModal">X</button>
+        </div>
+        <div class="dialog__content">
+          <p>Digite o valor e em seguida aperte o botão referente ao tipo do valor</p>
+          <div class="content__value">
+            <label for="value">Valor</label>
+            <input type="text" name="valueInput" id="value" placeholder="R$ 00,00 ">
+          </div>
+        </div>
+        <div class="dialog__type">
+          <p>Tipo de valor</p>
+          <button>Entrada</button>
+          <button>Saída</button>
+        </div>
+        <div class="dialog__checkout">
+          <button class="cancel">Cancelar</button>
+          <button class="inputValue">Inserir valor</button>
+        </div>
+      </div>
+      
+    </dialog>
+  </main>
+</body>
+
 </html>
