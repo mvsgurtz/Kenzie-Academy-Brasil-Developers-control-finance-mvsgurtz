@@ -8,11 +8,12 @@ export const handleModal = () => {
 }
 
 const closeModal = () => {
-    const inputModal = document.querySelector("inputModalValue");
+    const inputModal = document.querySelector(".inputModalValue");
     const btnCloseModal = document.querySelector(".closeModal");
     const modal = document.querySelector("#modalContainer");
     btnCloseModal.addEventListener("click", (e) => {
         modal.close();
+        inputModal.value = "R$ 00,00";
     })
 
 }

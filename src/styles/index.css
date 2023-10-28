@@ -101,13 +101,13 @@
     font-weight: var(--font-weight-2);
 }
 
-.container__transactions ul {
+.transactions__card {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 }
 
-.container__transactions li {
+.valueList {
     display: flex;
     width: 688px;
     height: 42px;
@@ -126,7 +126,7 @@
     align-items: center;
 }
 
-.transactions__info span {
+.typeTransition {
     display: flex;
     height: 1.625rem;
     padding: 7px 14px;
@@ -137,17 +137,20 @@
     color: var(--grey2, #495057);
     font-size: var(--font-size-4);
     font-weight: var(--font-weight-2);
-
-
 }
 
-.transactions__info button {
+.excValue{
     display: flex;
     padding: 4px 8px;
     align-items: center;
     border-radius: 8px;
     border: 1.5px solid var(--grey5, #F1F3F5);
     background: var(--mode, #FFF);
+}
+
+.excValue img {
+    width: 12px;
+    height: 12px;
 }
 
 #modalContainer {
