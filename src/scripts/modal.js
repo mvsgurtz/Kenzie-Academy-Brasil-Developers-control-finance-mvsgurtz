@@ -13,7 +13,7 @@ const closeModal = () => {
     const modal = document.querySelector("#modalContainer");
     btnCloseModal.addEventListener("click", (e) => {
         modal.close();
-        inputModal.value = "R$ 00,00";
+        // inputModal.value = " ";
     })
 
 }

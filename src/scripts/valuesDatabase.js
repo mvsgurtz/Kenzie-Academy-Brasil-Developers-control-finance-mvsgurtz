@@ -60,23 +60,67 @@ const createCard = (arrInfo) => {
   }
 
   // REMOVE CARDS: 
-  
-  btnCloseValue.addEventListener("click", (e)=>{
-      const indexValue = insertedValues.indexOf(arrInfo)
-      insertedValues.splice(indexValue, 1);
+
+  btnCloseValue.addEventListener("click", (e) => {
+    const indexValue = insertedValues.indexOf(arrInfo)
+    insertedValues.splice(indexValue, 1);
+    renderCards(insertedValues);
+  })
+}
+
+export const createNewValue = () => {
+
+  const btnModal = document.querySelector("#showModal");
+  const formModal = document.querySelector(".modal");
+  const inputValue = document.querySelector(".inputValue");
+
+  formModal.addEventListener("submit", (e) => {
+
+    event.preventDefault();
+
+   
+    const inputModal = document.querySelector(".inputModalValue");
+    const btnType = document.querySelectorAll(".type");
+    const btnModalExit = document.querySelector(".btnExit");
+    const btnModalEntrance = document.querySelector(".btnEntrance");
+
+    let typeValue = 0;
+
+    // btnType.forEach((btn) => {
+    //   btn.addEventListener("click", (e) => {
+    //     if (btn.target.value == "Entrada") {
+    //       typeValue = 0;
+    //     }
+    //     else if (btn.target.value == "Saída") {
+    //       typeValue = 1;
+    //     }
+    //   })
+    // })
+
+    let newValue = {
+      value: inputModal.value,
+      categoryID: typeValue,
+    }
+
+    btnModalExit.addEventListener("click", (e) =>{
+      typeValue === 1;
+      event.preventDefault();
+      console.log(typeValue);
+    } )
+
+    btnModalEntrance.addEventListener("click", (e) => {
+      typeValue  === 0;
+      event.preventDefault();
+      console.log(typeValue);
+    })
+   
+
+    
+    inputValue.addEventListener("click", (e) => {
+      insertedValues.push(newValue);
       renderCards(insertedValues);
     })
-
-  // const modalSubmit = document.querySelector(".inputValue");
-  // // const modalCancel = document.querySelector("");
-  // const inputModal =  document.querySelector(".inputModalValue")
-  // const btnModalExit = document.querySelector(".btnEntrance");
-  // const btnModalEntrnce =  document.querySelector(".btnExit");
-
-  // modalSubmit.addEventListener("click", (e)=>{
-  //   pValue.innerText = inputModal.value;
-  //   console.log(pValue);
-  // })
+  })
 }
 
 
