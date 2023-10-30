@@ -9,12 +9,12 @@ export let insertedValues = [
   },
   {
     id: 2,
-    value: 40.0,
+    value: - 40.0,
     categoryID: 1,
   },
   {
     id: 3,
-    value: 15.5,
+    value: 15,
     categoryID: 0,
   },
 ];
@@ -65,63 +65,104 @@ const createCard = (arrInfo) => {
     const indexValue = insertedValues.indexOf(arrInfo)
     insertedValues.splice(indexValue, 1);
     renderCards(insertedValues);
+    sumValue(totalSum(insertedValues));
   })
 }
 
 export const createNewValue = () => {
 
-  const btnModal = document.querySelector("#showModal");
   const formModal = document.querySelector(".modal");
-  const inputValue = document.querySelector(".inputValue");
+  const inputModal = document.querySelector(".inputModalValue");
+  const btnType = document.querySelectorAll(".type");
+  const btnModalExit = document.querySelector(".btnExit");
+  const btnModalEntrance = document.querySelector(".btnEntrance");
+
+
+  let typeValue = 0;
+  let newValue = {
+    value: " ",
+    categoryID: 0,
+  }
+
+  btnModalExit.addEventListener("click", (e) => {
+    typeValue = 1;
+    newValue.value = - parseFloat(inputModal.value);
+    newValue.categoryID = typeValue;
+  })
+
+  btnModalEntrance.addEventListener("click", (e) => {
+    typeValue = 0;
+    newValue.value = parseFloat(inputModal.value);
+    newValue.categoryID = typeValue;
+  })
 
   formModal.addEventListener("submit", (e) => {
-
     event.preventDefault();
-
-   
-    const inputModal = document.querySelector(".inputModalValue");
-    const btnType = document.querySelectorAll(".type");
-    const btnModalExit = document.querySelector(".btnExit");
-    const btnModalEntrance = document.querySelector(".btnEntrance");
-
-    let typeValue = 0;
-
-    // btnType.forEach((btn) => {
-    //   btn.addEventListener("click", (e) => {
-    //     if (btn.target.value == "Entrada") {
-    //       typeValue = 0;
-    //     }
-    //     else if (btn.target.value == "Saída") {
-    //       typeValue = 1;
-    //     }
-    //   })
-    // })
-
-    let newValue = {
-      value: inputModal.value,
-      categoryID: typeValue,
-    }
-
-    btnModalExit.addEventListener("click", (e) =>{
-      typeValue === 1;
-      event.preventDefault();
-      console.log(typeValue);
-    } )
-
-    btnModalEntrance.addEventListener("click", (e) => {
-      typeValue  === 0;
-      event.preventDefault();
-      console.log(typeValue);
-    })
-   
-
-    
-    inputValue.addEventListener("click", (e) => {
-      insertedValues.push(newValue);
-      renderCards(insertedValues);
-    })
+    insertedValues.push(newValue);
+    renderCards(insertedValues);
+    newValue = {};
+    sumValue(totalSum(insertedValues));
+    showEntrance(insertedValues);
+    showExit(insertedValues);
+    showAll(insertedValues);
   })
 }
 
+const totalSum = (arr) => {
+  const newArrValue = arr.map((element) => {
+    const arrValue = {
+      value: element.value,
+    }
+    return arrValue;
+  })
+
+  const totalValueSum = newArrValue.reduce((acc, initialValue) => {
+    return acc + initialValue.value;
+  }, 0)
+  return totalValueSum;
+}
+
+const sumValue = (totalSum) => {
+  const sumHolder = document.querySelector(".sum__value");
+  sumHolder.innerText = `R$ ${totalSum},00`;
+}
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  sumValue(totalSum(insertedValues))
+});
+
+const showEntrance = (arr) => {
+  const btnEntranceNav = document.querySelector(".button__entrance");
+  const positiveValue = arr.filter((element) => {
+    return element.value > 0;
+  })
+
+  btnEntranceNav.addEventListener("click", () => {
+    renderCards(positiveValue);
+  })
+}
+
+const showExit = (arr) => {
+  const btnExitNav = document.querySelector(".button__exit");
+  const negativeValue = arr.filter((element) => {
+    return element.value < 0;
+  })
+
+  btnExitNav.addEventListener("click", () => {
+    renderCards(negativeValue);
+  })
+}
+
+const showAll = (arr) => {
+  const btnAll = document.querySelector(".button__all");
+
+  btnAll.addEventListener("click", () => {
+    renderCards(insertedValues);
+  })
+}
+
+showEntrance(insertedValues);
+showExit(insertedValues);
+showAll(insertedValues);
 
 

@@ -28,14 +28,14 @@
     <div class="container__nav">
       <p>Resumo financeiro</p>
       <div class="nav__buttons">
-        <button>Todos</button>
-        <button>Entradas</button>
-        <button>Saídas</button>
+        <button class="button__all">Todos</button>
+        <button class="button__entrance">Entradas</button>
+        <button class="button__exit">Saídas</button>
       </div>
     </div>
     <div class="container__sum">
       <p>Soma dos valores</p>
-      <p>R$2120,00</p>
+      <p class="sum__value">R$2120,00</p>
     </div>
     <div class="container__transactions">
       <ul class="transactions__card">
@@ -52,7 +52,7 @@
       <form class="modal">
         <div class="dialog__info">
           <p>Registro do valor</p>
-          <button class="closeModal">X</button>
+          <button class="closeModal" type="button">X</button>
         </div>
         <div class="dialog__content">
           <p>Digite o valor e em seguida aperte o botão referente ao tipo do valor</p>
@@ -63,12 +63,12 @@
         </div>
         <div class="dialog__type">
           <p>Tipo de valor</p>
-          <button class="btnEntrance type" >Entrada</button>
-          <button class="btnExit type" >Saída</button>
+          <button class="btnEntrance type"  type="button">Entrada</button>
+          <button class="btnExit type" type="button">Saída</button>
         </div>
         <div class="dialog__checkout">
           <button class="cancel" type="button">Cancelar</button>
-          <button class="inputValue" type="button">Inserir valor</button>
+          <button class="inputValue" type="submit">Inserir valor</button>
         </div>
       </form>
       
