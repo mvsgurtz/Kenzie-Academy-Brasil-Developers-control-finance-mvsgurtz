@@ -5,8 +5,6 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <script src="./src/scripts/modal.js"></script> -->
-  <!-- <script src="./src/scripts/valuesDatabase.js"></script> -->
   <script src="./src/scripts/index.js" type="module" defer></script>
   <title>Control Finance</title>
   <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon" />
@@ -35,17 +33,17 @@
     </div>
     <div class="container__sum">
       <p>Soma dos valores</p>
-      <p class="sum__value">R$2120,00</p>
+      <p class="sum__value">R$00,00</p>
     </div>
     <div class="container__transactions">
       <ul class="transactions__card">
-        <li class="valueList">
+        <!-- <li class="valueList">
           <p class="valueCard">R$ 40,00</p>
           <div class="transactions__info">
             <span class="typeTransition">Entrada</span>
             <button class="excValue"><img src="./src/assets/trash-icon.svg" alt="trash-icon"></button>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <dialog id="modalContainer">
@@ -58,7 +56,7 @@
           <p>Digite o valor e em seguida aperte o botão referente ao tipo do valor</p>
           <div class="content__value">
             <label for="value">Valor</label>
-            <input class="inputModalValue" type="text" name="valueInput" id="value" placeholder="R$ 00,00 ">
+            <input class="inputModalValue" type="text" name="valueInput" id="value" placeholder="R$ 00,00 " required>
           </div>
         </div>
         <div class="dialog__type">
@@ -68,7 +66,7 @@
         </div>
         <div class="dialog__checkout">
           <button class="cancel" type="button">Cancelar</button>
-          <button class="inputValue" type="submit">Inserir valor</button>
+          <button id="inputValue" type="submit" disabled>Inserir valor</button>
         </div>
       </form>
       

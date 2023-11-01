@@ -2,21 +2,8 @@ const valuesCategory = ["Entrada", "Saída"];
 
 
 export let insertedValues = [
-  {
-    id: 1,
-    value: 90.0,
-    categoryID: 0,
-  },
-  {
-    id: 2,
-    value: - 40.0,
-    categoryID: 1,
-  },
-  {
-    id: 3,
-    value: 15,
-    categoryID: 0,
-  },
+  
+
 ];
 
 export const renderCards = (arrValues) => {
@@ -25,6 +12,7 @@ export const renderCards = (arrValues) => {
   for (let i = 0; i < arrValues.length; i++) {
     const currentvalue = arrValues[i];
     createCard(currentvalue);
+    sumValue(totalSum(insertedValues))
   }
 }
 
@@ -32,7 +20,7 @@ const createCard = (arrInfo) => {
 
   // CREATE CARDS: 
   const ulValue = document.querySelector(".transactions__card");
-  const valueLi = document.createElement("li")
+  const valueLi = document.createElement("li");
   const pValue = document.createElement("p");
   const divValue = document.createElement("div");
   const typeValue = document.createElement("span");
@@ -62,10 +50,25 @@ const createCard = (arrInfo) => {
   // REMOVE CARDS: 
 
   btnCloseValue.addEventListener("click", (e) => {
+    const btnEntranceNav = document.querySelector(".button__entrance");
+    const btnExitNav = document.querySelector(".button__exit");
+    const btnAll = document.querySelector(".button__all");
     const indexValue = insertedValues.indexOf(arrInfo)
     insertedValues.splice(indexValue, 1);
     renderCards(insertedValues);
     sumValue(totalSum(insertedValues));
+    if (e.target !== btnEntranceNav) {
+      btnEntranceNav.focus();
+      renderCards(positiveFilter(insertedValues));
+    }
+    if (e.target !== btnExitNav) {
+      btnExitNav.focus();
+      renderCards(negativeFilter(insertedValues));
+    }
+    if (e.target !== btnAll) {
+      btnAll.focus();
+      renderCards(negativeFilter(insertedValues));
+    }
   })
 }
 
@@ -73,27 +76,30 @@ export const createNewValue = () => {
 
   const formModal = document.querySelector(".modal");
   const inputModal = document.querySelector(".inputModalValue");
-  const btnType = document.querySelectorAll(".type");
   const btnModalExit = document.querySelector(".btnExit");
   const btnModalEntrance = document.querySelector(".btnEntrance");
-
+  const btnSubmit = document.querySelector("#inputValue");
 
   let typeValue = 0;
   let newValue = {
-    value: " ",
+    value: "",
     categoryID: 0,
   }
 
   btnModalExit.addEventListener("click", (e) => {
+    btnModalExit.classList.add("clicked");
     typeValue = 1;
     newValue.value = - parseFloat(inputModal.value);
     newValue.categoryID = typeValue;
+    btnSubmit.removeAttribute("disabled");
   })
 
   btnModalEntrance.addEventListener("click", (e) => {
+    btnModalEntrance.classList.add("clicked");
     typeValue = 0;
     newValue.value = parseFloat(inputModal.value);
     newValue.categoryID = typeValue;
+    btnSubmit.removeAttribute("disabled");
   })
 
   formModal.addEventListener("submit", (e) => {
@@ -102,11 +108,11 @@ export const createNewValue = () => {
     renderCards(insertedValues);
     newValue = {};
     sumValue(totalSum(insertedValues));
-    showEntrance(insertedValues);
-    showExit(insertedValues);
-    showAll(insertedValues);
+    inputModal.value = "";
+    btnSubmit.disabled = true;
   })
 }
+
 
 const totalSum = (arr) => {
   const newArrValue = arr.map((element) => {
@@ -127,42 +133,44 @@ const sumValue = (totalSum) => {
   sumHolder.innerText = `R$ ${totalSum},00`;
 }
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  sumValue(totalSum(insertedValues))
-});
-
-const showEntrance = (arr) => {
-  const btnEntranceNav = document.querySelector(".button__entrance");
+const positiveFilter = (arr) => {
   const positiveValue = arr.filter((element) => {
     return element.value > 0;
   })
-
-  btnEntranceNav.addEventListener("click", () => {
-    renderCards(positiveValue);
-  })
+  return positiveValue;
 }
 
-const showExit = (arr) => {
-  const btnExitNav = document.querySelector(".button__exit");
+const negativeFilter = (arr) => {
   const negativeValue = arr.filter((element) => {
     return element.value < 0;
   })
+  return negativeValue;
 
+}
+
+const showEntrance = () => {
+  const btnEntranceNav = document.querySelector(".button__entrance");
+  btnEntranceNav.addEventListener("click", (e) => {
+    renderCards(positiveFilter(insertedValues));
+  })
+}
+
+const showExit = () => {
+  const btnExitNav = document.querySelector(".button__exit");
   btnExitNav.addEventListener("click", () => {
-    renderCards(negativeValue);
+    renderCards(negativeFilter(insertedValues));
   })
 }
 
 const showAll = (arr) => {
   const btnAll = document.querySelector(".button__all");
-
   btnAll.addEventListener("click", () => {
     renderCards(insertedValues);
   })
 }
 
-showEntrance(insertedValues);
-showExit(insertedValues);
+showEntrance();
+showExit();
 showAll(insertedValues);
 
 
