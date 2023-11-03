@@ -1,10 +1,12 @@
 const valuesCategory = ["Entrada", "Saída"];
 
 
-export let insertedValues = [
-  
 
-];
+const localValues = localStorage.getItem("@ControlFinance:card");
+
+const convertedValues = JSON.parse(localValues);
+
+export const insertedValues = convertedValues || [];
 
 export const renderCards = (arrValues) => {
   const ulValue = document.querySelector(".transactions__card");
@@ -67,8 +69,10 @@ const createCard = (arrInfo) => {
     }
     if (e.target !== btnAll) {
       btnAll.focus();
-      renderCards(negativeFilter(insertedValues));
+      renderCards(insertedValues);
     }
+    const localRemove = JSON.stringify(insertedValues);
+    localStorage.setItem("@ControlFinance:card", localRemove);
   })
 }
 
@@ -110,6 +114,9 @@ export const createNewValue = () => {
     sumValue(totalSum(insertedValues));
     inputModal.value = "";
     btnSubmit.disabled = true;
+
+    const localCard = JSON.stringify(insertedValues);
+    localStorage.setItem("@ControlFinance:card", localCard);
   })
 }
 
@@ -169,8 +176,16 @@ const showAll = (arr) => {
   })
 }
 
+const verifyLocal = () => {
+  const localInfo = localStorage.getItem("@ControlFinance:card");
+  if(JSON.parse(localInfo)){
+    renderCards(JSON.parse(localInfo));
+  }
+}
+
 showEntrance();
 showExit();
 showAll(insertedValues);
+verifyLocal();
 
 
