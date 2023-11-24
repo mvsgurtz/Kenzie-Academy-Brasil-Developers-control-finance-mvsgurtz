@@ -55,6 +55,7 @@
 
 .nav__buttons {
     display: flex;
+    gap: 15px;
 }
 
 .container__nav p {
